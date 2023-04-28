@@ -55,7 +55,7 @@ public class UserHome extends AppCompatActivity {
         GraphBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Log");
+                System.out.println("Graph");
             }
         });
     }
