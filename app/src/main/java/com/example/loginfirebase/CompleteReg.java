@@ -67,6 +67,7 @@ public class CompleteReg extends Activity {
         editTestWeight = findViewById(R.id.weight);
         buttonComReg = findViewById(R.id.btn_register);
         DOB = findViewById(R.id.dateofbirth);
+        auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         progressBar = findViewById(R.id.progressBar);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -103,7 +104,6 @@ public class CompleteReg extends Activity {
                 }
 // making the user
                     //Todo: Add SQL Code
-                user = auth.getCurrentUser();
                     Map<String, Object> Height = new HashMap<>();
                 Map<String, Object> Weight = new HashMap<>();
                 Map<String, Object> BMI = new HashMap<>();
