@@ -103,6 +103,7 @@ public class CompleteReg extends Activity {
                 }
 // making the user
                     //Todo: Add SQL Code
+                user = auth.getCurrentUser();
                     Map<String, Object> Height = new HashMap<>();
                 Map<String, Object> Weight = new HashMap<>();
                 Map<String, Object> BMI = new HashMap<>();
