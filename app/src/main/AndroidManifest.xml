@@ -22,6 +22,10 @@
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false"/>
         <activity
+            android:name=".graph"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="false"/>
+        <activity
             android:name=".UserHome"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="true">

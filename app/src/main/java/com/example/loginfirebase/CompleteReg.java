@@ -70,7 +70,7 @@ public class CompleteReg extends Activity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         progressBar = findViewById(R.id.progressBar);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
 
 //add an onclick listener for the button
@@ -104,6 +104,7 @@ public class CompleteReg extends Activity {
                 }
 // making the user
                     //Todo: Add SQL Code
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
                     Map<String, Object> Height = new HashMap<>();
                 Map<String, Object> Weight = new HashMap<>();
                 Map<String, Object> BMI = new HashMap<>();
@@ -116,10 +117,10 @@ public class CompleteReg extends Activity {
                     double BMICalc = intUserWeight / (intUserHeightM*intUserHeightM);
                     BMI.put("User-BMI", BMICalc);
                     UserBDay.put("User-Birthday",UserBirthday);
-                    db.collection("UserDetails").document(user.getEmail()).set(Height);
-                    db.collection("UserDetails").document(user.getEmail()).set(Weight);
-                    db.collection("UserDetails").document(user.getEmail()).set(BMI);
-                    db.collection("UserDetails").document(user.getEmail()).set(UserBDay);
+                    db.collection("Height").document(user.getEmail()).set(Height);
+                    db.collection("Weight").document(user.getEmail()).set(Weight);
+                    db.collection("BMI").document(user.getEmail()).set(BMI);
+                    db.collection("Birthday").document(user.getEmail()).set(UserBDay);
                 if (true){
 
                                     Intent intent= new Intent(getApplicationContext(),UserHome.class);
