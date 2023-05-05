@@ -20,9 +20,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 public class UserHome extends AppCompatActivity {
     FirebaseAuth auth;
-    Button Logout, LogMenu,GraphBtn;
-    TextView Username,BMITxt;
+    Button Logout, LogMenu, GraphBtn;
+    TextView Username, BMITxt;
     FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +35,11 @@ public class UserHome extends AppCompatActivity {
         Logout = findViewById(R.id.LogoutBtn);
         LogMenu = findViewById(R.id.logActBtn);
         GraphBtn = findViewById(R.id.GraphBtn);
-        if(user == null){
-            Intent intent = new Intent(getApplicationContext(),Login.class);
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
             finish();
-        }
-        else{
+        } else {
             Username.setText(user.getEmail());
 
         }
@@ -52,7 +52,7 @@ public class UserHome extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         System.out.println("OK");
-                        BMITxt.setText((CharSequence) document.getData().toString()); //TODO: Fix Output Curent Output is Eg. {User-BMI=141.0}
+                        BMITxt.setText((CharSequence) document.get("User-BMI").toString()); //TODO: Fix Output Curent Output is Eg. {User-BMI=141.0}
                     } else {
                         System.out.println("No Doc");
                     }
@@ -66,7 +66,7 @@ public class UserHome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(),Login.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 finish();
             }
@@ -75,12 +75,15 @@ public class UserHome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("Log");
+                Intent intent = new Intent(getApplicationContext(), log.class);
+                startActivity(intent);
+                finish();
             }
         });
         GraphBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),graph.class);
+                Intent intent = new Intent(getApplicationContext(), graph.class);
                 startActivity(intent);
                 finish();
                 System.out.println("Graph");

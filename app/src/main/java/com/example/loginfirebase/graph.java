@@ -27,6 +27,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -34,8 +42,10 @@ public class graph extends AppCompatActivity {
     FirebaseAuth auth;
     Button back,Logmenu;
     LineData lineData;
+    Task<DocumentSnapshot> Test;
     LineChart lineChart;
-
+    DocumentReference Weight;
+    String userId;
     FirebaseUser user;
 
 
@@ -61,40 +71,85 @@ public class graph extends AppCompatActivity {
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         lineData = new LineData(dataSets);
         ArrayList<Entry> pricesClose = new ArrayList<>();
-        pricesClose.add(new Entry(4f, 9f));
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference weightCollectionRef = db.collection("Weight");
+        Log.d("TAG", "Loading...");
+        weightCollectionRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                Log.d("TAG", "Number of documents: " + documentSnapshots.size());
+                Log.d("TAG", "onEvent called");
+                if (e != null) {
+                    Log.w("TAG", "Listen failed.", e);
+                    return;
+                }
+
+                for (DocumentSnapshot document : documentSnapshots) {
+                    Log.d("TAG", "DocumentSnapshot data: " + document.getString("User-Weight")); // Log the document snapshot
+
+                    DocumentReference docRef = document.getReference();
+                    docRef.get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+
+                            if (documentSnapshot != null && documentSnapshot.exists()) {
+                                String Startweight = document.getString("Start-Weight");
+                                String weight1 = document.getString("1-Weight");
+                                String weight2 = document.getString("2-Weight");
+                                String weight3 = document.getString("3-Weight");
+                                String weight4 = document.getString("4-Weight");
+                                String weight5 = document.getString("5-Weight");
+                                String weight6 = document.getString("6-Weight");
+                                String weight7 = document.getString("7-Weight");
+                                // Do something with the weight value
+                            } else {
+                                Log.d("Failed", "weight");
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting document: ", task.getException());
+                        }
+                    });
+                }
 
 
-        LineDataSet closeLineDataSet = new LineDataSet(pricesClose, "test");
-        closeLineDataSet.setDrawCircles(true);
-        closeLineDataSet.setCircleRadius(4);
-        closeLineDataSet.setDrawValues(false);
-        closeLineDataSet.setLineWidth(3);
-        closeLineDataSet.setColor(Color.rgb(255, 165, 0));
-        closeLineDataSet.setCircleColor(Color.rgb(255, 165, 0));
-        dataSets.add(closeLineDataSet);
-        lineChart.setData(lineData);
+                pricesClose.add(new Entry(1, 15));
+                pricesClose.add(new Entry(2, 18));
+                pricesClose.add(new Entry(3, 12));
+                pricesClose.add(new Entry(4, 19));
+                pricesClose.add(new Entry(5, 10));
+
+
+                LineDataSet closeLineDataSet = new LineDataSet(pricesClose, "test");
+                closeLineDataSet.setDrawCircles(true);
+                closeLineDataSet.setCircleRadius(4);
+                closeLineDataSet.setDrawValues(true);
+                closeLineDataSet.setColor(Color.rgb(255, 165, 0));
+                closeLineDataSet.setCircleColor(Color.rgb(255, 165, 0));
+                dataSets.add(closeLineDataSet);
+                lineChart.setData(lineData);
+                Log.d("chart", "Number of entries: " + pricesClose.size());
+                lineChart.invalidate();
 
 // Format X and Y axes
-        XAxis xAxis = lineChart.getXAxis();
-        if (xAxis != null) {
-            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-            xAxis.setGranularity(1f);
-            xAxis.setLabelCount(5, true);
-        }
+                YAxis yAxisLeft = lineChart.getAxisLeft();
+                if (yAxisLeft != null) {
+                    yAxisLeft.setAxisMinimum(0f); // set minimum value for y-axis
+                    yAxisLeft.setAxisMaximum(20f); // set maximum value for y-axis
+                    yAxisLeft.setGranularity(1f);
+                    yAxisLeft.setLabelCount(10, true);
+                }
 
-        YAxis yAxisLeft = lineChart.getAxisLeft();
-        if (yAxisLeft != null) {
-            yAxisLeft.setGranularity(1f);
-            yAxisLeft.setLabelCount(5, true);
-        }
+                XAxis xAxis = lineChart.getXAxis();
+                if (xAxis != null) {
+                    xAxis.setAxisMinimum(1f); // set minimum value for x-axis
+                    xAxis.setAxisMaximum(3f); // set maximum value for x-axis
+                    xAxis.setGranularity(1f);
+                    xAxis.setLabelCount(10, false);
+                }
 
-        YAxis yAxisRight = lineChart.getAxisRight();
-        yAxisRight.setGranularity(1f);
-        if (yAxisRight != null) {
-            yAxisRight.setGranularity(1f);
-            yAxisRight.setLabelCount(5, true);
-        }
 
-        lineChart.invalidate();
+            }
+        });
     }
 }

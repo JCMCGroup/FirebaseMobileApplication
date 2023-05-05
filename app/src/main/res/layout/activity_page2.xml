@@ -30,7 +30,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/height"
+            android:id="@+id/tboxHR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your Height in cm"></com.google.android.material.textfield.TextInputEditText>
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateofbirth"
+            android:id="@+id/btnlogweight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
