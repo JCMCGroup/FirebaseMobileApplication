@@ -80,6 +80,8 @@ public class CompleteReg extends Activity {
                 Map<String, Object> Weight = new HashMap<>();
                 Map<String, Object> BMI = new HashMap<>();
                 Map<String, Object> UserBDay = new HashMap<>();
+                Map<String, Object> UserCal = new HashMap<>();
+                Map<String, Object> Exercise = new HashMap<>();
                     Height.put("User-Height", UserHeight);
                     Weight.put("User-Weight", UserWeight);
                     int intUserWeight = Integer.parseInt(UserWeight);
@@ -88,10 +90,15 @@ public class CompleteReg extends Activity {
                     double BMICalc = intUserWeight / (intUserHeightM*intUserHeightM);
                     BMI.put("User-BMI", BMICalc);
                     UserBDay.put("User-Birthday",UserBirthday);
+                    UserCal.put("User-Cal","0");
+                    UserCal.put("User-Consumed","0");
+                    Exercise.put("Exercise","0");
                     db.collection("Height").document(user.getEmail()).set(Height);
                     db.collection("Weight").document(user.getEmail()).set(Weight);
                     db.collection("BMI").document(user.getEmail()).set(BMI);
                     db.collection("Birthday").document(user.getEmail()).set(UserBDay);
+                    db.collection("Cals").document(user.getEmail()).set(UserCal);
+                    db.collection("Exercise").document(user.getEmail()).set(Exercise);
                 if (true){
 
                                     Intent intent= new Intent(getApplicationContext(),UserHome.class);

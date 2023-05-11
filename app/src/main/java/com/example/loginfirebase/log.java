@@ -71,16 +71,46 @@ public class log extends Activity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         System.out.println("OK");
-                        R1 = document.get("1").toString();
-                        R2 = document.get("2").toString();
-                        R3 = document.get("3").toString();
-                        R4 = document.get("4").toString();
-                        R5 = document.get("5").toString();
-                        R6 = document.get("6").toString();
-                        R7 = document.get("7").toString();
-                        R8 = document.get("8").toString();
-                        R9 = document.get("9").toString();
-                        R10 = document.get("10").toString();
+                        try {R1 = (String) document.get("1");
+                        }catch (NullPointerException e){
+                            R1 = null;
+                        }
+                        try {R2 = (String) document.get("2");
+                        }catch (NullPointerException e){
+                            R2 = null;
+                        }
+                        try {R3 = (String) document.get("3");
+                        }catch (NullPointerException e){
+                            R3 = null;
+                        }
+                        try {R4 = (String) document.get("4");
+                        }catch (NullPointerException e){
+                            R4 = null;
+                        }
+                        try {R5 = (String) document.get("5");
+                        }catch (NullPointerException e){
+                            R5 = null;
+                        }
+                        try {R6 = (String) document.get("6");
+                        }catch (NullPointerException e){
+                            R6 = null;
+                        }
+                        try {R7 = (String) document.get("7");
+                        }catch (NullPointerException e){
+                            R7 = null;
+                        }
+                        try {R8 = (String) document.get("8");
+                        }catch (NullPointerException e){
+                            R8 = null;
+                        }
+                        try {R9 = (String) document.get("9");
+                        }catch (NullPointerException e){
+                            R10 = null;
+                        }
+                        try {R10 = (String) document.get("10");
+                        }catch (NullPointerException e){
+                            R10 = null;
+                        }
                         if (R10 != null){
                             txtHR.setText("Last Heart Rate Reading was: "+R10);
                         } else if (R9!=null) {
@@ -124,38 +154,28 @@ public class log extends Activity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         System.out.println("OK");
-                        R1 = document.get("1-Weight").toString();
-                        R2 = document.get("2-Weight").toString();
-                        R3 = document.get("3-Weight").toString();
-                        R4 = document.get("4-Weight").toString();
-                        R5 = document.get("5-Weight").toString();
-                        R6 = document.get("6-Weight").toString();
-                        R7 = document.get("7-Weight").toString();
-                        R8 = document.get("8-Weight").toString();
-                        R9 = document.get("9-Weight").toString();
-                        R10 = document.get("10-Weight").toString();
-                        StartWeight = document.get("User-Weight").toString();
-                        if (R10 != null){
-                            txtWeight.setText("Your Current Weight is: "+R10);
-                            double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
-                            txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
-                        } else if (R9!=null) {
-                            txtWeight.setText("Your Current Weight is: "+R9);
-                            double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
-                            txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
-                        }else if (R8!=null) {
-                            txtWeight.setText("Your Current Weight is: "+R8);
-                            double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
-                            txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
-                        }else if (R7!=null) {
-                            txtWeight.setText("Your Current Weight is: "+R7);
-                            double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
-                            txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
-                        }else if (R6!=null) {
-                            txtWeight.setText("Your Current Weight is: "+R6);
-                            double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
-                            txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
-                        }else if (R5!=null) {
+                        try {R1 = (String) document.get("1-Weight");
+                        }catch (NullPointerException e){
+                            R1 = null;
+                        }
+                        try {R2 = (String) document.get("2-Weight");
+                        }catch (NullPointerException e){
+                            R2 = null;
+                        }
+                        try {R3 = (String) document.get("3-Weight");
+                        }catch (NullPointerException e){
+                            R3 = null;
+                        }
+                        try {R4 = (String) document.get("4-Weight");
+                        }catch (NullPointerException e){
+                            R4 = null;
+                        }
+                        try {R5 = (String) document.get("5-Weight");
+                        }catch (NullPointerException e){
+                            R5 = null;
+                        }
+                        StartWeight = (String) document.get("User-Weight");
+                        if (R5!=null) {
                             txtWeight.setText("Your Current Weight is: "+R5);
                             double Loss = Double.valueOf(StartWeight) - Double.valueOf(R10);
                             txtWLoss.setText("You Have Lost:"+String.valueOf(Loss)+"KG");
@@ -200,16 +220,46 @@ public class log extends Activity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         System.out.println("OK");
-                        R1 = document.get("1").toString();
-                        R2 = document.get("2").toString();
-                        R3 = document.get("3").toString();
-                        R4 = document.get("4").toString();
-                        R5 = document.get("5").toString();
-                        R6 = document.get("6").toString();
-                        R7 = document.get("7").toString();
-                        R8 = document.get("8").toString();
-                        R9 = document.get("9").toString();
-                        R10 = document.get("10").toString();
+                        try {R1 = (String) document.get("1");
+                        }catch (NullPointerException e){
+                            R1 = null;
+                        }
+                        try {R2 = (String) document.get("2");
+                        }catch (NullPointerException e){
+                            R2 = null;
+                        }
+                        try {R3 = (String) document.get("3");
+                        }catch (NullPointerException e){
+                            R3 = null;
+                        }
+                        try {R4 = (String) document.get("4");
+                        }catch (NullPointerException e){
+                            R4 = null;
+                        }
+                        try {R5 = (String) document.get("5");
+                        }catch (NullPointerException e){
+                            R5 = null;
+                        }
+                        try {R6 = (String) document.get("6");
+                        }catch (NullPointerException e){
+                            R6 = null;
+                        }
+                        try {R7 = (String) document.get("7");
+                        }catch (NullPointerException e){
+                            R7 = null;
+                        }
+                        try {R8 = (String) document.get("8");
+                        }catch (NullPointerException e){
+                            R8 = null;
+                        }
+                        try {R9 = (String) document.get("9");
+                        }catch (NullPointerException e){
+                            R10 = null;
+                        }
+                        try {R10 = (String) document.get("10");
+                        }catch (NullPointerException e){
+                            R10 = null;
+                        }
                         if (R10 != null){
                             UserKcal.setText("You Have Consumed : "+R10+"Kcals Today");
                         } else if (R9!=null) {
@@ -253,20 +303,31 @@ public class log extends Activity {
                 progressBar.setVisibility(View.VISIBLE);
                 //read the test from edit text
                 int HR;
-                HR = Integer.parseInt(UserHeartRate.getText().toString());
+                HR = Integer.parseInt(String.valueOf(UserHeartRate.getText()));
                 // check if textboxes are not empty
+                // Get the reference to the Weight collection and the document with the user's email as its ID
                 DocumentReference docRef = db.collection("Weight").document(user.getEmail());
+
+// Fetch the document with the user's email from the Weight collection
                 docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        // If the document exists
                         if (documentSnapshot.exists()) {
+                            // Get the number of fields in the document
                             int numFields = documentSnapshot.getData().size();
+
+                            // Create a new HeartRate object to store the user's heart rate data
                             Map<String, Object> HeartRate = new HashMap<>();
                             HeartRate.put(String.valueOf(numFields + 1), UserHeartRate);
-                            db.collection("Weight").document(user.getEmail()).set(HeartRate);
+
+                            // Get the reference to the HR collection and the document with the user's email as its ID
+                            // and set the HeartRate object as its data
+                            db.collection("HR").document(user.getEmail()).set(HeartRate);
                         }
                     }
                 });
+
                 if(TextUtils.isEmpty(UserHeartRate.getText().toString())){
                     Toast.makeText(log.this, "Please Enter Your Current Beats Per Min", Toast.LENGTH_SHORT).show();
                 }
